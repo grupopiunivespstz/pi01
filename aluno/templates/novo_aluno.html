@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+
+
+{% block title %}
+Novo Aluno
+{% endblock %}
+
+
+{% block content %}
+
+<body class="text-center">
+
+
+    <div class="container">
+        <form method="POST" class="form-register" style="color: white">
+            {{ form.hidden_tag() }}
+            <h1 class="h3 mb-3 font-weight-normal">
+                Informe os Dados do Aluno
+            </h1>
+            <br>
+            {{ form.ra_aluno.label()}}
+            {{ form.ra_aluno(class="form-control", placeholder="RA do Aluno")}}
+
+            {{ form.nome.label()}}
+            {{ form.nome(class="form-control", placeholder="Nome do Aluno")}}
+
+            <br>
+
+            {{ form.submit(class="btn btn-lg btn-block btn-primary") }}
+
+        </form>
+    </div>
+</body>
+{% endblock %}

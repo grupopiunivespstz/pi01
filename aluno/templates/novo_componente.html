@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+
+{% block title %}
+Novo Componente
+{% endblock %}
+
+
+{% block content %}
+
+<body class="text-center">
+
+
+    <div class="container">
+        <form method="POST" class="form-register" style="color: white">
+            {{ form.hidden_tag() }}
+            <h1 class="h3 mb-3 font-weight-normal">
+                Informe os Dados do Componente Familiar
+            </h1>
+            <br>
+            {{ form.comp_nome.label()}}
+            {{ form.comp_nome(class="form-control", placeholder="Nome do Componente")}}
+
+            {{ form.comp_escolaridade.label()}}
+            {{ form.comp_escolaridade(class="form-control", placeholder="Escolaridade")}}
+
+            {{ form.comp_parentesco.label()}}
+            {{ form.comp_parentesco(class="form-control", placeholder="Parentesco")}}
+
+            <br>
+
+            {{ form.submit(class="btn btn-lg btn-block btn-primary") }}
+
+        </form>
+    </div>
+</body>
+{% endblock %}

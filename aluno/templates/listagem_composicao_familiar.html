@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% block title %}
+Listagem de Composição Familiar
+{% endblock %}
+
+{% block content %}
+<table class="table table-hover table-dark">
+    <thead>
+        <tr>
+            <th scope="col">ID Aluno</th>
+            <th scope="col">Nome</th>
+            <th scope="col">Escolaridade</th>
+            <th scope="col">Parentesco</th>
+            <th scope="col">Opções</th>
+            <th scope="col"></th>
+
+        </tr>
+    </thead>
+    {% for componente in composicao_familiar %}
+    <tbody>
+        <tr>
+            <td> {{ componente.comp_id_aluno }} </td>
+            <td> {{ componente.comp_nome }}</td>
+            <td> {{ componente.comp_escolaridade }}</td>
+            <td> {{ componente.comp_parentesco }}</td>
+            <td>
+                <button class="btn btn-outline btn-info">Alterar</button>
+            </td>
+            <td>
+                <button class="btn btn-outline btn-info">Excluir</button>
+            </td>
+        </tr>
+    </tbody>
+    {% endfor %}
+</table>
+
+{% endblock %}
