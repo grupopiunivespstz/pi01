@@ -1,6 +1,5 @@
-from types import resolve_bases
 from aluno import app
-from flask import render_template, redirect, url_for
+from flask import render_template, redirect, url_for, flash
 from aluno.models import Aluno, ComposicaoFamiliar, Responsavel
 from aluno.forms import Form_IncluirAluno, Form_IncluirComponenteFamiliar, Form_IncluirResponsavel
 from aluno import db
@@ -39,13 +38,14 @@ def listagem_responsavel():
 def novo_aluno():
     form = Form_IncluirAluno()
     if form.validate_on_submit():
-        criar_aluno = Aluno(ra_aluno=form.ra_aluno.data, nome=form.nome.data)
+        criar_aluno = Aluno(ra_aluno=form.ra_aluno.data,
+                            nome=form.nome.data, sexo=form.sexo.data)
         db.session.add(criar_aluno)
         db.session.commit()
         return redirect(url_for("home"))
     if form.errors != {}:
         for err_msg in form.erros.values():
-            print(f'Erro ao criar um aluno: {err_msg}')
+            flash(f'Erro ao criar um aluno: {err_msg}')
     return render_template('novo_aluno.html', form=form)
 
 # incluir um novo responsavel
@@ -71,7 +71,7 @@ def novo_responsavel():
 def novo_componente():
     form = Form_IncluirComponenteFamiliar()
     if form.validate_on_submit():
-        criar_componente = ComposicaoFamiliar(
+        criar_componente = ComposicaoFamiliar(comp_id_aluno=form.comp_id_aluno.data,
             comp_nome=form.comp_nome.data, comp_escolaridade=form.comp_escolaridade.data, comp_parentesco=form.comp_parentesco.data)
         db.session.add(criar_componente)
         db.session.commit()

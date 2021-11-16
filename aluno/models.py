@@ -1,4 +1,3 @@
-from sqlalchemy.orm import backref
 from aluno import db
 
 
@@ -59,6 +58,7 @@ class Aluno(db.Model):
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     ra_aluno = db.Column(db.String(30), nullable=False)
     nome = db.Column(db.String(120))
+    sexo = db.Column(db.String(1))
     responsavel = db.relationship(
         "Responsavel", backref="Responsavel", lazy=True)
     comp_familiar = db.relationship(

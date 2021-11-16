@@ -1,10 +1,15 @@
-from flask_wtf import FlaskForm
-from wtforms import StringField, SubmitField, SelectField, RadioField
-from wtforms.fields import choices
+
+from flask import Flask, render_template
+from wtforms import StringField, SelectField, RadioField, SubmitField
+from flask_wtf import Form, FlaskForm
+from wtforms_sqlalchemy.fields import QuerySelectField
+from .models import Aluno
 from wtforms.validators import Length
 
 
 class Form_IncluirComponenteFamiliar(FlaskForm):
+    comp_id_aluno = QuerySelectField(
+        'Escolha o aluno: ', query_factory=lambda: Aluno.query.all())
     comp_nome = StringField(label='Nome: ', validators=[
                             Length(min=5, max=120)])
     comp_escolaridade = SelectField(label='Escolaridade: ', validators=[
@@ -30,4 +35,6 @@ class Form_IncluirAluno(FlaskForm):
     nome = StringField(label='Nome: ', validators=[Length(min=5, max=120)])
     ra_aluno = StringField(label='RA do aluno: ', validators=[
                            Length(min=5, max=30)])
+    sexo = RadioField(label='Sexo: ', choices=[
+                      ('M', 'Masculino'), ('F', 'Feminino')])
     submit = SubmitField(label='Confirmar')

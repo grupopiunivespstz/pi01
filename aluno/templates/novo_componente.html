@@ -18,6 +18,10 @@ Novo Componente
                 Informe os Dados do Componente Familiar
             </h1>
             <br>
+
+            {{ form.comp_id_aluno.label()}}
+            {{ form.comp_id_aluno(class="form-control", placeholder="Nome do Aluno")}}
+            
             {{ form.comp_nome.label()}}
             {{ form.comp_nome(class="form-control", placeholder="Nome do Componente")}}
 
