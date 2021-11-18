@@ -1,7 +1,7 @@
 from aluno import app
 from flask import render_template, redirect, url_for, flash
-from aluno.models import Aluno, ComposicaoFamiliar, Responsavel
-from aluno.forms import Form_IncluirAluno, Form_IncluirComponenteFamiliar, Form_IncluirResponsavel
+from aluno.models import Aluno, ComposicaoFamiliar, Responsavel, Turma
+from aluno.forms import Form_IncluirAluno, Form_IncluirComponenteFamiliar, Form_IncluirResponsavel, Form_IncluirTurma
 from aluno import db
 
 
@@ -31,6 +31,13 @@ def listagem_composicao_familiar():
 def listagem_responsavel():
     responsaveis = Responsavel.query.all()
     return render_template("listagem_responsaveis.html", responsaveis=responsaveis)
+
+
+# Selecionar Tudo - Turma
+@app.route("/listagem_turma", methods=["GET"])
+def listagem_turma():
+    turmas = Turma.query.all()
+    return render_template("listagem_turma.html", turmas=turmas)
 
 
 # incluir um novo aluno
@@ -72,7 +79,7 @@ def novo_componente():
     form = Form_IncluirComponenteFamiliar()
     if form.validate_on_submit():
         criar_componente = ComposicaoFamiliar(comp_id_aluno=form.comp_id_aluno.data,
-            comp_nome=form.comp_nome.data, comp_escolaridade=form.comp_escolaridade.data, comp_parentesco=form.comp_parentesco.data)
+                                              comp_nome=form.comp_nome.data, comp_escolaridade=form.comp_escolaridade.data, comp_parentesco=form.comp_parentesco.data)
         db.session.add(criar_componente)
         db.session.commit()
         return redirect(url_for("home"))
@@ -80,6 +87,21 @@ def novo_componente():
         for err_msg in form.erros.values():
             print(f'Erro ao criar um componente familiar : {err_msg}')
     return render_template('novo_componente.html', form=form)
+
+
+# incluir uma nova turma
+@app.route("/nova_turma", methods=['GET', 'POST'])
+def nova_turma():
+    form = Form_IncluirTurma()
+    if form.validate_on_submit():
+        criar_turma = Turma(turm_descricao=form.turm_descricao.data)
+        db.session.add(criar_turma)
+        db.session.commit()
+        return redirect(url_for("home"))
+    if form.errors != {}:
+        for err_msg in form.erros.values():
+            print(f'Erro ao criar uma nova turma : {err_msg}')
+    return render_template('novo_turma.html', form=form)
 
 
 # rota inexistente

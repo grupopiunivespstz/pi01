@@ -1,6 +1,14 @@
 from aluno import db
 
 
+class Turma(db.Model):
+    __tablename__ = 'turma'
+    id_turma = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    turm_descricao = db.Column(db.String(120))
+    turm_aluno = db.relationship(
+        "Aluno", backref="Aluno", lazy=True)
+
+
 class ComposicaoFamiliar(db.Model):
     __tablename__ = 'composicao_familiar'
     id = db.Column(
@@ -59,6 +67,7 @@ class Aluno(db.Model):
     ra_aluno = db.Column(db.String(30), nullable=False)
     nome = db.Column(db.String(120))
     sexo = db.Column(db.String(1))
+    turma = db.Column(db.Integer, db.ForeignKey("turma.id_turma"))
     responsavel = db.relationship(
         "Responsavel", backref="Responsavel", lazy=True)
     comp_familiar = db.relationship(

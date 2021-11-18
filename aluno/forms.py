@@ -3,8 +3,14 @@ from flask import Flask, render_template
 from wtforms import StringField, SelectField, RadioField, SubmitField
 from flask_wtf import Form, FlaskForm
 from wtforms_sqlalchemy.fields import QuerySelectField
-from .models import Aluno
+from .models import Aluno, Turma
 from wtforms.validators import Length
+
+
+class Form_IncluirTurma(FlaskForm):
+    turm_descricao = StringField(label='Descrição: ', validators=[
+        Length(min=5, max=120)])
+    submit = SubmitField(label='Confirmar')
 
 
 class Form_IncluirComponenteFamiliar(FlaskForm):
@@ -37,4 +43,6 @@ class Form_IncluirAluno(FlaskForm):
                            Length(min=5, max=30)])
     sexo = RadioField(label='Sexo: ', choices=[
                       ('M', 'Masculino'), ('F', 'Feminino')])
+    turma = QuerySelectField(
+        'Escolha a turma: ', query_factory=lambda: Turma.query.all())
     submit = SubmitField(label='Confirmar')
