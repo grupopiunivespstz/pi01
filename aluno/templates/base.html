@@ -25,30 +25,42 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="{{ url_for('listagem_aluno') }}">Listar Alunos</a>
+                        <a class="nav-link active" aria-current="page" href="{{ url_for('listagem_aluno') }}">Alunos</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="{{ url_for('listagem_composicao_familiar') }}">Listar Composição Familiar</a>
+                        <a class="nav-link active" aria-current="page" href="{{ url_for('listagem_composicao_familiar') }}">Composição Familiar</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="{{ url_for('listagem_responsavel') }}">Listar Responsável</a>
+                        <a class="nav-link active" aria-current="page" href="{{ url_for('listagem_responsavel') }}">Responsável</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="{{ url_for('listagem_turma') }}">Listar Turmas</a>
+                        <a class="nav-link active" aria-current="page" href="{{ url_for('listagem_turma') }}">Turmas</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="{{ url_for('listagem_professor') }}">Professores</a>
+                    </li>                
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="{{ url_for('listagem_planejamento') }}">Planejamento</a>
+                    </li>                
                 </ul>
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ url_for('novo_aluno') }}">Novo Aluno</a>
+                        <a class="nav-link" href="{{ url_for('novo_aluno') }}">Incluir Aluno</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ url_for('novo_responsavel') }}">Novo Responável</a>
+                        <a class="nav-link" href="{{ url_for('novo_responsavel') }}">Incluir Responável</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ url_for('novo_componente') }}">Novo Componente</a>
+                        <a class="nav-link" href="{{ url_for('novo_componente') }}">Incluir Componente</a>
                     </li>                    
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ url_for('nova_turma') }}">Nova Turma</a>
+                        <a class="nav-link" href="{{ url_for('nova_turma') }}">Incluir Turma</a>
+                    </li>                                    
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('novo_professor') }}">Incluir Professor</a>
+                    </li>                                    
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('novo_planejamento') }}">Incluir Planejamento</a>
                     </li>                                    
                 </ul>
             </div>

@@ -1,7 +1,7 @@
 from aluno import app
 from flask import render_template, redirect, url_for, flash
-from aluno.models import Aluno, ComposicaoFamiliar, Responsavel, Turma
-from aluno.forms import Form_IncluirAluno, Form_IncluirComponenteFamiliar, Form_IncluirResponsavel, Form_IncluirTurma
+from aluno.models import Aluno, ComposicaoFamiliar, Planejamento, Professor, Responsavel, Turma
+from aluno.forms import Form_IncluirAluno, Form_IncluirComponenteFamiliar, Form_IncluirProfessor, Form_IncluirResponsavel, Form_IncluirTurma, Form_IncluirPlanejamento
 from aluno import db
 
 
@@ -38,6 +38,20 @@ def listagem_responsavel():
 def listagem_turma():
     turmas = Turma.query.all()
     return render_template("listagem_turma.html", turmas=turmas)
+
+
+# Selecionar Tudo - Professores
+@app.route("/listagem_professor", methods=["GET"])
+def listagem_professor():
+    professores = Professor.query.all()
+    return render_template("listagem_professor.html", professores=professores)
+
+
+# Selecionar Tudo - Professores
+@app.route("/listagem_planejamento", methods=["GET"])
+def listagem_planejamento():
+    planejamentos = Planejamento.query.all()
+    return render_template("listagem_planejamento.html", planejamentos=planejamentos)
 
 
 # incluir um novo aluno
@@ -102,6 +116,38 @@ def nova_turma():
         for err_msg in form.erros.values():
             print(f'Erro ao criar uma nova turma : {err_msg}')
     return render_template('novo_turma.html', form=form)
+
+
+# incluir um novo professor
+@app.route("/novo_professor", methods=['GET', 'POST'])
+def novo_professor():
+    form = Form_IncluirProfessor()
+    if form.validate_on_submit():
+        criar_professor = Professor(prof_nome=form.prof_nome.data, prof_funcao=form.prof_funcao.data,
+                                    prof_telefone=form.prof_telefone.data, prof_celular=form.prof_celular.data)
+        db.session.add(criar_professor)
+        db.session.commit()
+        return redirect(url_for("home"))
+    if form.errors != {}:
+        for err_msg in form.erros.values():
+            print(f'Erro ao criar um novo professor : {err_msg}')
+    return render_template('novo_professor.html', form=form)
+
+
+# incluir um novo planejamento
+@app.route("/novo_planejamento", methods=['GET', 'POST'])
+def novo_planejamento():
+    form = Form_IncluirPlanejamento()
+    if form.validate_on_submit():
+        criar_planejamento = Planejamento(id_turma=form.id_turma.data, id_professor=form.id_professor.data, eixo=form.eixo.data, tema=form.tema.data, subtema=form.subtema.data, dta_inicio=form.dta_inicio.data, dta_final=form.dta_final.data,
+                                          aulas_por_semana=form.aulas_por_semana.data, obj_geral=form.obj_geral.data, obj_especifico=form.obj_especifico.data, conhecer=form.conhecer.data, fazer=form.fazer.data, sentir=form.sentir.data)
+        db.session.add(criar_planejamento)
+        db.session.commit()
+        return redirect(url_for("home"))
+    if form.errors != {}:
+        for err_msg in form.erros.values():
+            print(f'Erro ao criar um novo planejamento : {err_msg}')
+    return render_template('novo_planejamento.html', form=form)
 
 
 # rota inexistente

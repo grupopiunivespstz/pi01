@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+
+{% block title %}
+Novo Professor
+{% endblock %}
+
+
+{% block content %}
+
+<body class="text-center">
+
+
+    <div class="container">
+        <form method="POST" class="form-register" style="color: white">
+            {{ form.hidden_tag() }}
+            <h1 class="h3 mb-3 font-weight-normal">
+                Informe os Dados do Professor
+            </h1>
+            <br>
+            {{ form.prof_nome.label()}}
+            {{ form.prof_nome(class="form-control", placeholder="Nome do Professor")}}
+
+            {{ form.prof_funcao.label()}}
+            {{ form.prof_funcao(class="form-control", placeholder="Função exercida")}}
+
+            {{ form.prof_telefone.label()}}
+            {{ form.prof_telefone(class="form-control", placeholder="Telefone")}}
+
+            {{ form.prof_celular.label()}}
+            {{ form.prof_celular(class="form-control", placeholder="Celular/WhatsApp")}}
+
+            <br>
+
+            {{ form.submit(class="btn btn-lg btn-block btn-primary") }}
+
+        </form>
+    </div>
+</body>
+{% endblock %}

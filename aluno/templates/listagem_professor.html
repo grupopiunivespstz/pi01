@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% block title %}
+Listagem de Professores
+{% endblock %}
+
+{% block content %}
+<table class="table table-hover table-dark">
+    <thead>
+        <tr>
+            <th scope="col">ID Professor</th>
+            <th scope="col">Nome</th>
+            <th scope="col">Função</th>
+            <th scope="col">Telefone</th>
+            <th scope="col">Celular/WhatsApp</th>                        
+            <th scope="col">Opções</th>
+            <th scope="col"></th>
+        </tr>
+    </thead>
+    {% for professor in professores %}
+    <tbody>
+        <tr>
+            <td> {{ professor.id }} </td>
+            <td> {{ professor.prof_nome }}</td>
+            <td> {{ professor.prof_funcao }}</td>
+            <td> {{ professor.prof_telefone }}</td>
+            <td> {{ professor.prof_celular }}</td>                        
+            <td>
+                <button class="btn btn-outline btn-info">Alterar</button>
+            </td>
+            <td>
+                <button class="btn btn-outline btn-info">Excluir</button>
+            </td>
+        </tr>
+    </tbody>
+    {% endfor %}
+</table>
+
+{% endblock %}

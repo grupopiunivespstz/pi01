@@ -1,16 +1,32 @@
 from aluno import db
 
 
+class Professor(db.Model):
+    __tablename__ = 'professor'
+    __table_args__ = {'extend_existing': True}
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    prof_nome = db.Column(db.String(120))
+    prof_funcao = db.Column(db.String(60))
+    prof_telefone = db.Column(db.String(20))
+    prof_celular = db.Column(db.String(20))
+#    prof_planejamento = db.relationship(
+#        "Planejamento", backref="Planejamento", lazy=True)
+
+
 class Turma(db.Model):
     __tablename__ = 'turma'
+    __table_args__ = {'extend_existing': True}
     id_turma = db.Column(db.Integer, primary_key=True, autoincrement=True)
     turm_descricao = db.Column(db.String(120))
     turm_aluno = db.relationship(
         "Aluno", backref="Aluno", lazy=True)
+#    turm_planejamento = db.relationship(
+#        "Planejamento", backref="Planejamento", lazy=True)
 
 
 class ComposicaoFamiliar(db.Model):
     __tablename__ = 'composicao_familiar'
+    __table_args__ = {'extend_existing': True}
     id = db.Column(
         db.Integer, primary_key=True, autoincrement=True)
     comp_id_aluno = db.Column(db.Integer, db.ForeignKey("aluno.id"))
@@ -37,6 +53,7 @@ class ComposicaoFamiliar(db.Model):
 
 class Responsavel(db.Model):
     __tablename__ = 'responsavel'
+    __table_args__ = {'extend_existing': True}
     id = db.Column(db.Integer, primary_key=True,
                    autoincrement=True)
     resp_id_aluno = db.Column(db.Integer, db.ForeignKey("aluno.id"))
@@ -63,6 +80,7 @@ class Responsavel(db.Model):
 
 class Aluno(db.Model):
     __tablename__ = 'aluno'
+    __table_args__ = {'extend_existing': True}
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     ra_aluno = db.Column(db.String(30), nullable=False)
     nome = db.Column(db.String(120))
@@ -72,3 +90,22 @@ class Aluno(db.Model):
         "Responsavel", backref="Responsavel", lazy=True)
     comp_familiar = db.relationship(
         "ComposicaoFamiliar", backref="ComposicaoFamiliar", lazy=True)
+
+
+class Planejamento(db.Model):
+    __tablename__ = 'planejamento'
+    __table_args__ = {'extend_existing': True}
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    eixo = db.Column(db.String(50))
+    tema = db.Column(db.String(50))
+    subtema = db.Column(db.String(50))
+    dta_inicio = db.Column(db.Date)
+    dta_final = db.Column(db.Date)
+    aulas_por_semana = db.Column(db.Integer)
+    obj_geral = db.Column(db.Text)
+    obj_especifico = db.Column(db.Text)
+    conhecer = db.Column(db.Text)
+    fazer = db.Column(db.Text)
+    sentir = db.Column(db.Text)
+    id_turma = db.Column(db.Integer, db.ForeignKey("turma.id_turma"))
+    id_professor = db.Column(db.Integer, db.ForeignKey("professor.id"))
