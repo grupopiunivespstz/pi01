@@ -1,7 +1,8 @@
 {
   "ExpandedNodes": [
     "",
-    "\\aluno"
+    "\\aluno",
+    "\\aluno\\templates"
   ],
   "SelectedNode": "\\app.py",
   "PreviewInSolutionExplorer": false
