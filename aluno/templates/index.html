@@ -1,9 +1,44 @@
 {% extends 'base.html' %}
 
-{% block title %}
-    Home Page
-{% endblock %}
-
 {% block content %}
-    <p>Conteúdo da homepage</p>
+
+<div class="jumbotron">
+    <h1>Controle Educacional</h1>
+    <p class="lead">Software para controle de informa&ccedil&otildees educacionais.</p>
+    <!-- <p><a href="http://flask.pocoo.org/" class="btn btn-primary btn-large">Learn more &raquo;</a></p -->
+</div>
+
+<div class="row">
+    <div class="col-md-4">
+        <h2>Cadasro de Alunos</h2>
+        <p>
+            Clique aqui para cadastrar um aluno
+        </p>
+        <p><a class="btn btn-success" href="{{ url_for('novo_aluno') }}">Novo Aluno &raquo;</a></p>
+    </div>
+    <div class="col-md-4">
+        <h2>Reposável</h2>
+        <p>Registrar Responsável</p>
+        <p><a class="btn btn-success" href="{{ url_for('novo_responsavel') }}">Novo Responável &raquo;</a></p>
+    </div>
+    <div class="col-md-4">
+        <h2>Cadastro de Turma</h2>
+        <p>Cadastrar os alunos em suas respectivas Turmas.</p>
+        <p><a class="btn btn-success" href="{{ url_for('nova_turma') }}">Incluir Turma &raquo;</a></p>
+    </div>
+
+    <div class="col-md-4">
+        <h2>Cadastro de Professor</h2>
+        <p>Cadastrar Professores.</p>
+        <p><a class="btn btn-success" href="{{ url_for('novo_professor') }}">Incluir Professor &raquo;</a></p>
+    </div>
+
+    <div class="col-md-4">
+        <h2>Cadastro de Planejamento</h2>
+        <p>Cadastrar Planejamentos.</p>
+        <p><a class="btn btn-success" href="{{ url_for('novo_planejamento') }}">Incluir Planejamento &raquo;</a></p>
+    </div>
+
+
+</div>
 {% endblock %}
