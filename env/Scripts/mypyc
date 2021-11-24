@@ -1,4 +1,4 @@
-#!D:\projetos\PJI110\sistema\env\Scripts\python.exe
+#!/usr/bin/env python3
 """Mypyc command-line tool.
 
 Usage:
