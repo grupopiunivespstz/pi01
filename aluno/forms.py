@@ -1,6 +1,6 @@
 
 from flask import Flask, render_template
-from wtforms import StringField, SelectField, RadioField, SubmitField
+from wtforms import StringField, SelectField, RadioField, SubmitField, TextAreaField
 from flask_wtf import Form, FlaskForm
 from wtforms.fields.datetime import DateField
 from wtforms.fields.numeric import IntegerField
@@ -76,14 +76,14 @@ class Form_IncluirPlanejamento(FlaskForm):
     dta_inicio = DateField(label='Data de Início: ')
     dta_final = DateField(label='Data de Fim: ')
     aulas_por_semana = IntegerField(label='Aulas por Semana: ')
-    obj_geral = StringField(label='Objetivo Geral: ', validators=[
+    obj_geral = TextAreaField(label='Objetivo Geral: ', validators=[
         Length(min=5, max=1024)])
     obj_especifico = StringField(label='Objetivo Específico: ', validators=[
         Length(min=5, max=1024)])
-    conhecer = StringField(label='Conhecer: ', validators=[
+    conhecer = TextAreaField(label='Conhecer: ', validators=[
         Length(min=5, max=1024)])
-    fazer = StringField(label='Fazer: ', validators=[
+    fazer = TextAreaField(label='Fazer: ', validators=[
         Length(min=5, max=1024)])
-    sentir = StringField(label='Sentir: ', validators=[
+    sentir = TextAreaField(label='Sentir: ', validators=[
         Length(min=5, max=1024)])
     submit = SubmitField(label='Confirmar')

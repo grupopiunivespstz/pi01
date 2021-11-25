@@ -11,28 +11,44 @@ Novo Professor
 <body class="text-center">
 
 
-    <div class="container">
-        <form method="POST" class="form-register" style="color: white">
+    <div class="box">
+        <form method="POST" class="form-register">
             {{ form.hidden_tag() }}
             <h1 class="h3 mb-3 font-weight-normal">
                 Informe os Dados do Professor
             </h1>
             <br>
-            {{ form.prof_nome.label()}}
-            {{ form.prof_nome(class="form-control", placeholder="Nome do Professor")}}
+            <table align="center">
+                <tr>
+                    <!--      -->
+                    <td align="right">{{ form.prof_nome.label()}}</td>
+                    <td align="left">{{ form.prof_nome(class="form-control", placeholder="Nome do Professor")}}</td>
+                </tr>
+                <tr>
+                    <!--      -->
+                    <td align="right">{{ form.prof_funcao.label()}}</td>
+                    <td align="left">{{ form.prof_funcao(class="form-control", placeholder="Função exercida")}}</td>
+                </tr>
+                <tr>
+                    <!--      -->
+                    <td align="right">{{ form.prof_telefone.label()}}</td>
+                    <td align="left">{{ form.prof_telefone(class="form-control", placeholder="Telefone")}}</td>
+                </tr>
+                <tr>
+                    <!--      -->
+                    <td align="right">{{ form.prof_celular.label()}}</td>
+                    <td align="left">{{ form.prof_celular(class="form-control", placeholder="Celular/WhatsApp")}}</td>
+                </tr>
 
-            {{ form.prof_funcao.label()}}
-            {{ form.prof_funcao(class="form-control", placeholder="Função exercida")}}
-
-            {{ form.prof_telefone.label()}}
-            {{ form.prof_telefone(class="form-control", placeholder="Telefone")}}
-
-            {{ form.prof_celular.label()}}
-            {{ form.prof_celular(class="form-control", placeholder="Celular/WhatsApp")}}
-
+                <tr>
+                    <!--   Botao   -->
+                    <td></td>
+                    <td align="left">{{ form.submit(class="btn btn-lg btn-block btn-primary") }}</td>
+                </tr>
+            </table>
             <br>
 
-            {{ form.submit(class="btn btn-lg btn-block btn-primary") }}
+
 
         </form>
     </div>

@@ -11,29 +11,43 @@ Novo Componente
 <body class="text-center">
 
 
-    <div class="container">
-        <form method="POST" class="form-register" style="color: white">
+    <div class="box">
+        <form method="POST" class="form-register">
             {{ form.hidden_tag() }}
             <h1 class="h3 mb-3 font-weight-normal">
                 Informe os Dados do Componente Familiar
             </h1>
             <br>
-
-            {{ form.comp_id_aluno.label()}}
-            {{ form.comp_id_aluno(class="form-control", placeholder="Nome do Aluno")}}
-            
-            {{ form.comp_nome.label()}}
-            {{ form.comp_nome(class="form-control", placeholder="Nome do Componente")}}
-
-            {{ form.comp_escolaridade.label()}}
-            {{ form.comp_escolaridade(class="form-control", placeholder="Escolaridade")}}
-
-            {{ form.comp_parentesco.label()}}
-            {{ form.comp_parentesco(class="form-control", placeholder="Parentesco")}}
-
+            <table align="center">
+                <tr>
+                    <!--      -->
+                    <td align="right">{{ form.comp_id_aluno.label()}}</td>
+                    <td align="left">{{ form.comp_id_aluno(class="form-control", placeholder="Nome do Aluno")}}</td>
+                </tr>
+                <tr>
+                    <!--      -->
+                    <td align="right">{{ form.comp_nome.label()}}</td>
+                    <td align="left">{{ form.comp_nome(class="form-control", placeholder="Nome do Componente")}}</td>
+                </tr>
+                <tr>
+                    <!--      -->
+                    <td align="right">{{ form.comp_escolaridade.label()}}</td>
+                    <td align="left">{{ form.comp_escolaridade(class="form-control", placeholder="Escolaridade")}}</td>
+                </tr>
+                <tr>
+                    <!--      -->
+                    <td align="right">{{ form.comp_parentesco.label()}}</td>
+                    <td align="left">{{ form.comp_parentesco(class="form-control", placeholder="Parentesco")}}</td>
+                </tr>
+                <tr>
+                    <!--      -->
+                    <td></td>
+                    <td align="left">{{ form.submit(class="btn btn-lg btn-block btn-primary") }}</td>
+                </tr>
+            </table>
             <br>
 
-            {{ form.submit(class="btn btn-lg btn-block btn-primary") }}
+
 
         </form>
     </div>

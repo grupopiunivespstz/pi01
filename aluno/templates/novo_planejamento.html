@@ -11,55 +11,89 @@ Novo Planejamento
 <body class="text-center">
 
 
-    <div class="container">
-        <form method="POST" class="form-register" style="color: white">
+    <div class="box">
+        <form method="POST" class="form-register">
             {{ form.hidden_tag() }}
             <h1 class="h3 mb-3 font-weight-normal">
                 Informe os Dados do Planejamento
             </h1>
             <br>
-            {{ form.id_turma.label()}}
-            {{ form.id_turma(class="form-control", placeholder="Turma")}}
+            <table align="center">
+                <tr>
+                    <!--      -->
+                    <td align="right">{{ form.id_turma.label()}}</td>
+                    <td align="left">{{ form.id_turma(class="form-control", placeholder="Turma")}}</td>
+                </tr>
+                <tr>
+                    <!--      -->
+                    <td align="right">{{ form.id_professor.label()}}</td>
+                    <td align="left">{{ form.id_professor(class="form-control", placeholder="Professor")}}</td>
+                </tr>
+                <tr>
+                    <!--      -->
+                    <td align="right">{{ form.eixo.label()}}</td>
+                    <td align="left">{{ form.eixo(class="form-control", placeholder="Eixo")}}</td>
+                </tr>
+                <tr>
+                    <!--      -->
+                    <td align="right">{{ form.tema.label()}}</td>
+                    <td align="left">{{ form.tema(class="form-control", placeholder="Tema")}}</td>
+                </tr>
+                <tr>
+                    <!--      -->
+                    <td align="right">{{ form.subtema.label()}}</td>
+                    <td align="left">{{ form.subtema(class="form-control", placeholder="Subtema")}}</td>
+                </tr>
+                <tr>
+                    <!--      -->
+                    <td align="right">{{ form.dta_inicio.label()}}</td>
+                    <td align="left">{{ form.dta_inicio(class="form-control", placeholder="Início")}}</td>
+                </tr>
+                <tr>
+                    <!--      -->
+                    <td align="right">{{ form.dta_final.label()}}</td>
+                    <td align="left">{{ form.dta_final(class="form-control", placeholder="Final")}}</td>
+                </tr>
+                <tr>
+                    <!--      -->
+                    <td align="right">{{ form.aulas_por_semana.label()}}</td>
+                    <td align="left">{{ form.aulas_por_semana(class="form-control", placeholder="Aulas por semana")}}</td>
+                </tr>
+                <tr>
+                    <!--      -->
+                    <td align="right">{{ form.obj_geral.label()}}</td>
+                    <td align="left">{{ form.obj_geral(class="form-control", placeholder="Objetivos gerais")}}</td>
+                </tr>
+                <tr>
+                    <!--      -->
+                    <td align="right">{{ form.obj_especifico.label()}}</td>
+                    <td align="left">{{ form.obj_especifico(class="form-control", placeholder="Objetivos específicos")}}</td>
+                </tr>
+                <tr>
+                    <!--      -->
+                    <td align="right">{{ form.conhecer.label()}}</td>
+                    <td align="left">{{ form.conhecer(class="form-control", placeholder="Conhecer")}}</td>
+                </tr>
+                <tr>
+                    <!--      -->
+                    <td align="right">{{ form.fazer.label()}}</td>
+                    <td align="left">{{ form.fazer(class="form-control", placeholder="Fazer")}}</td>
+                </tr>
+                <tr>
+                    <!--      -->
+                    <td align="right">{{ form.sentir.label()}}</td>
+                    <td align="left">{{ form.sentir(class="form-control", placeholder="Sentir")}}</td>
+                </tr>
 
-            {{ form.id_professor.label()}}
-            {{ form.id_professor(class="form-control", placeholder="Professor")}}
-
-            {{ form.eixo.label()}}
-            {{ form.eixo(class="form-control", placeholder="Eixo")}}
-
-            {{ form.tema.label()}}
-            {{ form.tema(class="form-control", placeholder="Tema")}}
-
-            {{ form.subtema.label()}}
-            {{ form.subtema(class="form-control", placeholder="Subtema")}}
-
-            {{ form.dta_inicio.label()}}
-            {{ form.dta_inicio(class="form-control", placeholder="Início")}}
-
-            {{ form.dta_final.label()}}
-            {{ form.dta_final(class="form-control", placeholder="Final")}}            
-
-            {{ form.aulas_por_semana.label()}}
-            {{ form.aulas_por_semana(class="form-control", placeholder="Aulas por semana")}}            
-
-            {{ form.obj_geral.label()}}
-            {{ form.obj_geral(class="form-control", placeholder="Objetivos gerais")}}            
-
-            {{ form.obj_especifico.label()}}
-            {{ form.obj_especifico(class="form-control", placeholder="Objetivos específicos")}}            
-
-            {{ form.conhecer.label()}}
-            {{ form.conhecer(class="form-control", placeholder="Conhecer")}}            
-
-            {{ form.fazer.label()}}
-            {{ form.fazer(class="form-control", placeholder="Fazer")}}            
-
-            {{ form.sentir.label()}}
-            {{ form.sentir(class="form-control", placeholder="Sentir")}}            
-
+                <tr>
+                    <!--  Botão    -->
+                    <td></td>
+                    <td align="left">{{ form.submit(class="btn btn-lg btn-block btn-primary")}}</td>
+                </tr>
+            </table>
             <br>
 
-            {{ form.submit(class="btn btn-lg btn-block btn-primary") }}
+
 
         </form>
     </div>
