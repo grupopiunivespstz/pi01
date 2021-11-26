@@ -9,8 +9,8 @@ class Professor(db.Model):
     prof_funcao = db.Column(db.String(60))
     prof_telefone = db.Column(db.String(20))
     prof_celular = db.Column(db.String(20))
-#    prof_planejamento = db.relationship(
-#        "Planejamento", backref="Planejamento", lazy=True)
+    # prof_planejamento = db.relationship(
+    #    "Planejamento_Professor", backref="Planejamento", lazy=True)
 
 
 class Turma(db.Model):
@@ -20,32 +20,33 @@ class Turma(db.Model):
     turm_descricao = db.Column(db.String(120))
     turm_aluno = db.relationship(
         "Aluno", backref="Aluno", lazy=True)
-#    turm_planejamento = db.relationship(
-#        "Planejamento", backref="Planejamento", lazy=True)
+    # turm_planejamento = db.relationship(
+    #    "Planejamento_Turma", backref="Planejamento", lazy=True)
 
 
 class ComposicaoFamiliar(db.Model):
     __tablename__ = 'composicao_familiar'
     __table_args__ = {'extend_existing': True}
-    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    id = db.Column(
+        db.Integer, primary_key=True, autoincrement=True)
     comp_id_aluno = db.Column(db.Integer, db.ForeignKey("aluno.id"))
     comp_nome = db.Column(db.String(120))
-    #comp_idade = db.Column(db.Integer)
-    #comp_renda = db.Column(db.Float)
-    #comp_etnia = db.Column(db.String(1))
-    #comp_casa = db.Column(db.String(1))
-    #comp_tv = db.Column(db.String(1))
-    #comp_computador = db.Column(db.String(1))
-    #comp_dvd = db.Column(db.String(1))
-    #comp_microondas = db.Column(db.String(1))
-    #comp_carro = db.Column(db.String(1))
-    #comp_moto = db.Column(db.String(1))
-    #comp_celular = db.Column(db.String(1))
-    #comp_internet = db.Column(db.String(1))
-    #comp_empregada_domestica = db.Column(db.String(1))
-    #comp_assinante_jrn_rev = db.Column(db.String(1))
-    #comp_religiao = db.Column(db.String(1))
-    #comp_descreve_religiao = db.Column(db.String(60))
+    comp_idade = db.Column(db.Integer)
+    comp_renda = db.Column(db.Float)
+    comp_etnia = db.Column(db.String(1))
+    comp_casa = db.Column(db.String(1))
+    comp_tv = db.Column(db.String(1))
+    comp_computador = db.Column(db.String(1))
+    comp_dvd = db.Column(db.String(1))
+    comp_microondas = db.Column(db.String(1))
+    comp_carro = db.Column(db.String(1))
+    comp_moto = db.Column(db.String(1))
+    comp_celular = db.Column(db.String(1))
+    comp_internet = db.Column(db.String(1))
+    comp_empregada_domestica = db.Column(db.String(1))
+    comp_assinante_jrn_rev = db.Column(db.String(1))
+    comp_religiao = db.Column(db.String(1))
+    comp_descreve_religiao = db.Column(db.String(60))
     comp_escolaridade = db.Column(db.String(120))
     comp_parentesco = db.Column(db.String(120))
 

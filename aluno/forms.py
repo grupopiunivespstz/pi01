@@ -29,7 +29,7 @@ class Form_IncluirTurma(FlaskForm):
 
 class Form_IncluirComponenteFamiliar(FlaskForm):
     comp_id_aluno = QuerySelectField(
-        'Escolha o aluno: ', query_factory=lambda: Aluno.query.all())
+        'Escolha o aluno: ', query_factory=lambda: Aluno.query, get_label='nome')
     comp_nome = StringField(label='Nome: ', validators=[
                             Length(min=5, max=120)])
     comp_escolaridade = SelectField(label='Escolaridade: ', validators=[
@@ -48,6 +48,9 @@ class Form_IncluirResponsavel(FlaskForm):
         Length(min=5, max=20)])
     resp_whatsapp = RadioField(label='Responde Whats App: ', choices=[
                                ('S', 'Sim'), ('N', 'Não')])
+    resp_id_aluno = QuerySelectField(
+        u'Escolha o aluno: ',
+        query_factory=lambda: Aluno.query, get_label='nome')                            
     submit = SubmitField(label='Confirmar')
 
 
@@ -58,15 +61,16 @@ class Form_IncluirAluno(FlaskForm):
     sexo = RadioField(label='Sexo: ', choices=[
                       ('M', 'Masculino'), ('F', 'Feminino')])
     turma = QuerySelectField(
-        'Escolha a turma: ', query_factory=lambda: Turma.query.all())
+        u'Escolha a turma: ',
+        query_factory=lambda: Turma.query, get_label='turm_descricao')
     submit = SubmitField(label='Confirmar')
 
 
 class Form_IncluirPlanejamento(FlaskForm):
     id_turma = QuerySelectField(
-        'Escolha a turma: ', query_factory=lambda: Turma.query.all())
+        'Escolha a turma: ', query_factory=lambda: Turma.query, get_label='turm_descricao')
     id_professor = QuerySelectField(
-        'Escolha o professor: ', query_factory=lambda: Professor.query.all())
+        'Escolha o professor: ', query_factory=lambda: Professor.query, get_label='prof_nome')
     eixo = StringField(label='Eixo: ', validators=[
         Length(min=5, max=50)])
     tema = StringField(label='Tema: ', validators=[
@@ -78,7 +82,7 @@ class Form_IncluirPlanejamento(FlaskForm):
     aulas_por_semana = IntegerField(label='Aulas por Semana: ')
     obj_geral = TextAreaField(label='Objetivo Geral: ', validators=[
         Length(min=5, max=1024)])
-    obj_especifico = StringField(label='Objetivo Específico: ', validators=[
+    obj_especifico = TextAreaField(label='Objetivo Específico: ', validators=[
         Length(min=5, max=1024)])
     conhecer = TextAreaField(label='Conhecer: ', validators=[
         Length(min=5, max=1024)])

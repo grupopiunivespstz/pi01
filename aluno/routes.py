@@ -3,6 +3,7 @@ from flask import render_template, redirect, url_for, flash
 from aluno.models import Aluno, ComposicaoFamiliar, Planejamento, Professor, Responsavel, Turma
 from aluno.forms import Form_IncluirAluno, Form_IncluirComponenteFamiliar, Form_IncluirProfessor, Form_IncluirResponsavel, Form_IncluirTurma, Form_IncluirPlanejamento
 from aluno import db
+import re
 
 
 @app.route("/")
@@ -57,10 +58,13 @@ def listagem_planejamento():
 # incluir um novo aluno
 @app.route("/novo_aluno", methods=['GET', 'POST'])
 def novo_aluno():
+
     form = Form_IncluirAluno()
+    turma_escolhida = somentenumeros(str(form.turma.data))
+
     if form.validate_on_submit():
         criar_aluno = Aluno(ra_aluno=form.ra_aluno.data,
-                            nome=form.nome.data, sexo=form.sexo.data)
+                            nome=form.nome.data, sexo=form.sexo.data, turma=turma_escolhida)
         db.session.add(criar_aluno)
         db.session.commit()
         return redirect(url_for("home"))
@@ -75,9 +79,11 @@ def novo_aluno():
 @app.route("/novo_responsavel", methods=['GET', 'POST'])
 def novo_responsavel():
     form = Form_IncluirResponsavel()
+    aluno_escolhido = somentenumeros(str(form.resp_id_aluno.data))
+
     if form.validate_on_submit():
         criar_responsavel = Responsavel(
-            resp_nome=form.resp_nome.data, resp_fone_fixo=form.resp_fone_fixo.data, resp_fone_celular=form.resp_fone_celular.data, resp_whatsapp=form.resp_whatsapp.data)
+            resp_nome=form.resp_nome.data, resp_fone_fixo=form.resp_fone_fixo.data, resp_fone_celular=form.resp_fone_celular.data, resp_whatsapp=form.resp_whatsapp.data, resp_id_aluno=aluno_escolhido)
         db.session.add(criar_responsavel)
         db.session.commit()
         return redirect(url_for("home"))
@@ -91,8 +97,10 @@ def novo_responsavel():
 @app.route("/novo_componente", methods=['GET', 'POST'])
 def novo_componente():
     form = Form_IncluirComponenteFamiliar()
+
+    aluno_escolhido = somentenumeros(str(form.comp_id_aluno.data))
     if form.validate_on_submit():
-        criar_componente = ComposicaoFamiliar(comp_id_aluno=form.comp_id_aluno.data,
+        criar_componente = ComposicaoFamiliar(comp_id_aluno=aluno_escolhido,
                                               comp_nome=form.comp_nome.data, comp_escolaridade=form.comp_escolaridade.data, comp_parentesco=form.comp_parentesco.data)
         db.session.add(criar_componente)
         db.session.commit()
@@ -138,8 +146,10 @@ def novo_professor():
 @app.route("/novo_planejamento", methods=['GET', 'POST'])
 def novo_planejamento():
     form = Form_IncluirPlanejamento()
+    turma_escolhida = somentenumeros(str(form.id_turma.data))
+    prof_escolhido = somentenumeros(str(form.id_professor.data))
     if form.validate_on_submit():
-        criar_planejamento = Planejamento(id_turma=form.id_turma.data, id_professor=form.id_professor.data, eixo=form.eixo.data, tema=form.tema.data, subtema=form.subtema.data, dta_inicio=form.dta_inicio.data, dta_final=form.dta_final.data,
+        criar_planejamento = Planejamento(id_turma=turma_escolhida, id_professor=prof_escolhido, eixo=form.eixo.data, tema=form.tema.data, subtema=form.subtema.data, dta_inicio=form.dta_inicio.data, dta_final=form.dta_final.data,
                                           aulas_por_semana=form.aulas_por_semana.data, obj_geral=form.obj_geral.data, obj_especifico=form.obj_especifico.data, conhecer=form.conhecer.data, fazer=form.fazer.data, sentir=form.sentir.data)
         db.session.add(criar_planejamento)
         db.session.commit()
@@ -154,3 +164,19 @@ def novo_planejamento():
 @app.route("/<string:rota_inexistente>")
 def rota_inexistente(rota_inexistente):
     return f"<h1>{rota_inexistente} : Essa página não existe<h1>"
+
+
+# rota para reiniciar banco de dados
+@app.route("/reiniciarbase")
+def reiniciarbase():
+    db.drop_all()
+    db.create_all()
+    return redirect(url_for("home"))
+
+
+def somentenumeros(strExpressao=''):
+    strNumero = ''
+    for numero in strExpressao:
+        if numero.isdigit():
+            strNumero = strNumero + str(numero)
+    return strNumero
